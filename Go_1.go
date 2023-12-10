@@ -31,11 +31,21 @@ func main() {
 }
 
 func processSingle(w http.ResponseWriter, r *http.Request) {
-    processRequest(w, r, false)
+    //processRequest(w, r, false)
+    if r.Method == http.MethodPost || r.Method == http.MethodGet {
+        processRequest(w, r, false)
+    } else {
+        http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+    }
 }
 
 func processConcurrent(w http.ResponseWriter, r *http.Request) {
-    processRequest(w, r, true)
+    //processRequest(w, r, true)
+    if r.Method == http.MethodPost || r.Method == http.MethodGet {
+        processRequest(w, r, true)
+    } else {
+        http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+    }
 }
 
 func processRequest(w http.ResponseWriter, r *http.Request, concurrent bool) {
