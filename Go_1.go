@@ -55,7 +55,7 @@ func processRequest(w http.ResponseWriter, r *http.Request, concurrent bool) {
         sortedArrays = sortSequentially(req.ToSort)
     }
 
-    timeTaken := time.Since(startTime).Microseconds()
+    timeTaken := time.Since(startTime).Nanoseconds()
 
     response := SortResponse{
         SortedArrays: sortedArrays,
